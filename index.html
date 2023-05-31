@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>aframe-webvr</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.6.0/aframe-master.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v3.8.6/dist/aframe-extras.min.js"></script>
+  </head>
+  <body>
+    <a-scene fog="type: linear; color: #000; far: 16; near: 7">
+      <a-assets>
+        <img id="floor" src="floor.jpg">
+        <img id="wall" src="wall-concrete.jpg">
+        <img id="wall-secret" src="wall-concrete-secret.jpg">
+        <img id="wall-brick" src="brick.jpg">
+        <video id="theaterVideo" autoplay loop="true" webkit-playsinline playsinline src="movie.mp4"></video>
+      </a-assets>
+
+      <a-entity
+        id="player"
+        camera="user-height: 1.6"
+        universal-controls
+        kinematic-body
+        listener
+        position: "0 9 0"
+      ></a-entity>
+
+      <a-entity position="-1.5 1.5 -22.5">
+        <a-video src="#theaterVideo" width="7" height="5.25" position="0 1.4 -4.4"></a-video>
+      </a-entity>
+
+      <a-grid id="ground" static-body material="src: #floor; repeat: 15 15" rotation="0 -90 0"></a-grid>
+      <a-entity id="walls"></a-entity>
+      <a-sky id="sky" color="#0000ff"></a-sky>
+    </a-scene>
+
+    <script src="map.js"></script>
+    <script src="video.js"></script>
+  </body>
+</html>
